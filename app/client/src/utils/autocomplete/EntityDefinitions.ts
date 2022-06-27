@@ -538,6 +538,12 @@ export const entityDefinitions = {
     videoDataURL: "string",
     videoRawBinary: "string",
   },
+  FLOW_GRAPH_WIDGET: {
+    "!doc": "Flow Graph widget displays DAGs",
+    "!url": "https://docs.appsmith.com/widget-reference/flow-graph",
+    isVisible: isVisible,
+    selectedDataPoint: "mapChartDataPoint",
+  },
   MAP_CHART_WIDGET: {
     "!doc":
       "Map Chart widget shows the graphical representation of your data on the map.",
