@@ -14,9 +14,6 @@ export function supportedKeyTypeList(
   keys: SSHKeyType[],
   generatedKeyType: string,
 ): SupportedKeyType[] {
-  // const first = selectedKeyTypeItem(keys, generatedKeyType);
-  // const rest = restKeyTypeItems(keys, generatedKeyType);
-  // return [first, ...rest];
   return keys
     .sort((a, b) => a.protocolName.localeCompare(b.protocolName))
     .map((key: SSHKeyType) => ({

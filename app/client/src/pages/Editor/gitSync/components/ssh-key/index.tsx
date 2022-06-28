@@ -15,8 +15,6 @@ import { Position } from "@blueprintjs/core";
 import { Toaster } from "components/ads/Toast";
 import { Variant } from "components/ads/common";
 import { useSSHKeyPair } from "../../hooks";
-import { useSelector } from "react-redux";
-import { getSupportedKeyTypes } from "selectors/gitSyncSelectors";
 import {
   DeployedKeyContainer,
   FlexRow,
@@ -63,10 +61,7 @@ function Keys(props: KeysProps) {
   const [newKeyType, setNewKeyType] = useState("ECDSA");
   const [keyType, keyVal, keyName] = SSHKeyPair.split(" ");
   const exactKeyType = keyType.startsWith("ecdsa") ? "ECDSA" : "RSA";
-  const supportedKeys = supportedKeyTypeList(
-    useSelector(getSupportedKeyTypes) || defaultKeyTypes,
-    exactKeyType,
-  );
+  const supportedKeys = supportedKeyTypeList(defaultKeyTypes, exactKeyType);
   const keyText = `${keyVal} ${keyName}`;
   const learnMoreClickHandler = () => {
     AnalyticsUtil.logEvent("GS_GIT_DOCUMENTATION_LINK_CLICK", {
