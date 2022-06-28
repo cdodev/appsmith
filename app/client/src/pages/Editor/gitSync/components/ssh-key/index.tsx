@@ -31,7 +31,7 @@ import { supportedKeyTypeList } from "./SupportedKeyTypeList";
 import getNotificationBanner from "./getNotificationBanner";
 import { getConfirmMenuItem } from "./getConfirmMenuItem";
 import { getMenuItems } from "./getMenuItems";
-import { SSHKeyType } from "../../../../../actions/gitSyncActions";
+import { SSHKeyType } from "actions/gitSyncActions";
 
 type KeysProps = {
   copyToClipboard: () => void;
@@ -53,12 +53,6 @@ const defaultKeyTypes: SSHKeyType[] = [
     protocolName: "RSA",
   },
 ];
-
-const defaultKeyType = {
-  keySize: 256,
-  platFormSupported: "",
-  protocolName: "ECDSA",
-};
 
 function Keys(props: KeysProps) {
   const { copyToClipboard, deployKeyDocUrl, showCopied, SSHKeyPair } = props;
