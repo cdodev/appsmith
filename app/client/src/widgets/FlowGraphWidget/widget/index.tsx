@@ -12,8 +12,12 @@ import { retryPromise } from "utils/AppsmithUtils";
 import { EventType } from "constants/AppsmithActionConstants/ActionConstants";
 import { ValidationTypes } from "constants/WidgetValidation";
 import { EvaluationSubstitutionType } from "entities/DataTree/dataTreeFactory";
-import FlowGraphComponent, { FlowGraphComponentProps } from "../component";
+import FlowGraphComponent, {
+  FlowGraphComponentProps,
+  getLayoutedElements,
+} from "../component";
 import * as log from "loglevel";
+import { StringLiteral } from "typescript";
 
 const Component: React.ComponentType<typeof FlowGraphComponent> = lazy(() =>
   retryPromise(() =>
@@ -59,63 +63,63 @@ class FlowGraphWidget extends BaseWidget<FlowGraphWidgetProps, WidgetState> {
 
                     type: ValidationTypes.ARRAY,
                     params: {
-                      unique: true,
+                      // unique: true,
                       children: {
                         type: ValidationTypes.OBJECT,
                         params: {
                           required: true,
-                          allowedKeys: [
-                            {
-                              name: "id",
-                              type: ValidationTypes.TEXT,
-                              params: {
-                                unique: true,
-                                required: true,
-                              },
-                            },
-                            {
-                              name: "label",
-                              type: ValidationTypes.TEXT,
-                              params: {
-                                required: true,
-                              },
-                            },
+                          // allowedKeys: [
+                          //   {
+                          //     name: "id",
+                          //     type: ValidationTypes.TEXT,
+                          //     params: {
+                          //       // unique: true,
+                          //       required: true,
+                          //     },
+                          //   },
+                          //   {
+                          //     name: "label",
+                          //     type: ValidationTypes.TEXT,
+                          //     params: {
+                          //       required: true,
+                          //     },
+                          //   },
 
-                            {
-                              name: "parentNode",
-                              type: ValidationTypes.TEXT,
-                              params: {
-                                required: false,
-                              },
-                            },
-                            {
-                              name: "position",
-                              type: ValidationTypes.OBJECT,
-                              params: {
-                                required: true,
+                          //   {
+                          //     name: "parentNode",
+                          //     type: ValidationTypes.TEXT,
+                          //     params: {
+                          //       required: false,
+                          //     },
+                          //   },
+                          // {
+                          //   name: "position",
+                          //   type: ValidationTypes.OBJECT,
+                          //   params: {
+                          //     required: true,
 
-                                params: {
-                                  required: true,
-                                  allowedKeys: [
-                                    {
-                                      name: "x",
-                                      type: ValidationTypes.NUMBER,
-                                      params: {
-                                        required: true,
-                                      },
-                                    },
-                                    {
-                                      name: "y",
-                                      type: ValidationTypes.NUMBER,
-                                      params: {
-                                        required: true,
-                                      },
-                                    },
-                                  ],
-                                },
-                              },
-                            },
-                          ],
+                          //     params: {
+                          //       required: true,
+                          //       allowedKeys: [
+                          //         {
+                          //           name: "x",
+                          //           type: ValidationTypes.NUMBER,
+                          //           params: {
+                          //             required: true,
+                          //           },
+                          //         },
+                          //         {
+                          //           name: "y",
+                          //           type: ValidationTypes.NUMBER,
+                          //           params: {
+                          //             required: true,
+                          //           },
+                          //         },
+                          //       ],
+                          //     },
+                          //   },
+                          // },
+                          // ],
                         },
                       },
                     },
@@ -128,42 +132,42 @@ class FlowGraphWidget extends BaseWidget<FlowGraphWidgetProps, WidgetState> {
                       unique: true,
                       children: {
                         type: ValidationTypes.OBJECT,
-                        params: {
-                          required: true,
-                          allowedKeys: [
-                            {
-                              name: "id",
-                              type: ValidationTypes.TEXT,
-                              params: {
-                                unique: true,
-                                required: true,
-                              },
-                            },
-                            {
-                              name: "label",
-                              type: ValidationTypes.TEXT,
-                              params: {
-                                required: false,
-                              },
-                            },
-                            {
-                              name: "source",
-                              // TODO: type for this
-                              type: ValidationTypes.TEXT,
-                              params: {
-                                required: true,
-                              },
-                            },
-                            {
-                              name: "target",
-                              // TODO: type for this
-                              type: ValidationTypes.TEXT,
-                              params: {
-                                required: true,
-                              },
-                            },
-                          ],
-                        },
+                        //   params: {
+                        //     required: true,
+                        //     allowedKeys: [
+                        //       {
+                        //         name: "id",
+                        //         type: ValidationTypes.TEXT,
+                        //         params: {
+                        //           // unique: true,
+                        //           required: true,
+                        //         },
+                        //       },
+                        //       {
+                        //         name: "label",
+                        //         type: ValidationTypes.TEXT,
+                        //         params: {
+                        //           required: false,
+                        //         },
+                        //       },
+                        //       {
+                        //         name: "source",
+                        //         // TODO: type for this
+                        //         type: ValidationTypes.TEXT,
+                        //         params: {
+                        //           required: true,
+                        //         },
+                        //       },
+                        //       {
+                        //         name: "target",
+                        //         // TODO: type for this
+                        //         type: ValidationTypes.TEXT,
+                        //         params: {
+                        //           required: true,
+                        //         },
+                        //       },
+                        //     ],
+                        //   },
                       },
                     },
                   },
@@ -252,24 +256,30 @@ class FlowGraphWidget extends BaseWidget<FlowGraphWidgetProps, WidgetState> {
 
   getPageView() {
     const {
-      data: { edges, nodes },
+      data,
       isVisible,
       mapTitle,
       showControls,
       showLabels,
       showMiniMap,
     } = this.props;
+    const { edges, nodes } = getLayoutedElements(
+      data.nodes?.map(configNodeToNode),
+      data.edges?.map(configEdgeToEdge),
+      "LR",
+    );
     log.debug(nodes);
     log.debug("EDGES", edges);
+
     return (
       <Suspense fallback={<Skeleton />}>
         <FlowGraphComponent
           borderRadius={this.props.borderRadius}
           boxShadow={this.props.boxShadow}
           caption={mapTitle}
-          edges={edges.map(configEdgeToEdge)}
+          edges={edges}
           isVisible={isVisible}
-          nodes={nodes.map(configNodeToNode)}
+          nodes={nodes}
           onNodeClick={this.handleNodeClick}
           showControls={showControls}
           showLabels={showLabels}
@@ -282,7 +292,7 @@ class FlowGraphWidget extends BaseWidget<FlowGraphWidgetProps, WidgetState> {
 
 interface ConfigNode {
   id: string;
-  type: string;
+  nodeType: string;
   label: string;
   parentNode?: string;
   position: XYPosition;
@@ -291,18 +301,20 @@ interface ConfigNode {
 const configNodeToNode = ({
   id,
   label,
+  nodeType,
   parentNode,
   position,
-  type,
 }: ConfigNode): Node => {
-  const style = type == "group" ? { width: 175, height: 150 } : {};
+  const style = nodeType == "group" ? { width: 175, height: 150 } : {};
   return {
     id,
-    type,
+    type: nodeType,
     data: { label },
     position,
     parentNode,
-    style,
+    // extent: "parent",
+    // expandParent: true,
+    // style,
     draggable: true,
     sourcePosition: Position.Right,
     targetPosition: Position.Left,
@@ -313,6 +325,7 @@ interface ConfigEdge {
   id: string;
   source: string;
   target: string;
+  edgeType: string;
   label?: string;
 }
 
@@ -320,12 +333,19 @@ interface GraphConfig {
   nodes: ConfigNode[];
   edges: ConfigEdge[];
 }
-const configEdgeToEdge = ({ id, label, source, target }: ConfigEdge): Edge => {
+const configEdgeToEdge = ({
+  edgeType,
+  id,
+  label,
+  source,
+  target,
+}: ConfigEdge): Edge => {
   return {
     id,
     source,
-    data: { label },
+    label,
     target,
+    // hidden: edgeType == "hidden",
     animated: true,
   };
 };
