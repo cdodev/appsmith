@@ -191,6 +191,10 @@ export const HelpMap: Record<string, { path: string; searchKey: string }> = {
     path: "/widget-reference/switch-group",
     searchKey: "Switch Group",
   },
+  FLOW_GRAPH_WIDGET: {
+    path: "/widget-reference/flow-graph",
+    searchKey: "Flow Graph",
+  },
   MAP_CHART_WIDGET: {
     path: "/widget-reference/map-chart",
     searchKey: "Map Chart",

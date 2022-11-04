@@ -340,6 +340,7 @@ export const CONFIG = {
               "IFRAME_WIDGET",
               "IMAGE_WIDGET",
               "INPUT_WIDGET_V2",
+              "FLOW_GRAPH_WIDGET",
               "MAP_CHART_WIDGET",
               "MAP_WIDGET",
               "MENU_BUTTON_WIDGET",

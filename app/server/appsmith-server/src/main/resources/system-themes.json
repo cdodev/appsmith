@@ -240,6 +240,10 @@
         "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
         "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}"
       },
+      "FLOW_GRAPH_WIDGET": {
+        "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+        "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}"
+      },
       "MAP_CHART_WIDGET": {
         "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
         "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
@@ -654,6 +658,10 @@
         "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
         "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}"
       },
+      "FLOW_GRAPH_WIDGET": {
+        "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+        "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}"
+      },
       "MAP_CHART_WIDGET": {
         "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
         "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
@@ -1063,6 +1071,10 @@
         "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
         "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}"
       },
+      "FLOW_GRAPH_WIDGET": {
+        "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+        "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}"
+      },
       "MAP_CHART_WIDGET": {
         "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
         "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
@@ -1465,6 +1477,10 @@
         "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}"
       },
       "MAP_WIDGET": {
+        "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+        "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}"
+      },
+      "FLOW_GRAPH_WIDGET": {
         "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
         "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}"
       },

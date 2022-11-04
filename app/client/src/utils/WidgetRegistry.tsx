@@ -62,6 +62,9 @@ import FilePickerWidget, {
 import FilePickerWidgetV2, {
   CONFIG as FILEPICKER_WIDGET_V2_CONFIG,
 } from "widgets/FilePickerWidgetV2";
+import FlowGraphWidget, {
+  CONFIG as FLOW_GRAPH_WIDGET_CONFIG,
+} from "widgets/FlowGraphWidget";
 import FormButtonWidget, {
   CONFIG as FORM_BUTTON_WIDGET_CONFIG,
 } from "widgets/FormButtonWidget";
@@ -200,6 +203,7 @@ export const ALL_WIDGETS_AND_CONFIG = [
   [AudioWidget, AUDIO_WIDGET_CONFIG],
   [ProgressBarWidget, PROGRESSBAR_WIDGET_CONFIG],
   [CameraWidget, CAMERA_WIDGET_CONFIG],
+  [FlowGraphWidget, FLOW_GRAPH_WIDGET_CONFIG],
   [MapChartWidget, MAP_CHART_WIDGET_CONFIG],
   [SelectWidget, SELECT_WIDGET_CONFIG],
   [MultiSelectWidgetV2, MULTI_SELECT_WIDGET_V2_CONFIG],
